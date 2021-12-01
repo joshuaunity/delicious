@@ -29,5 +29,6 @@ Route::get('/home', [LinksController::class, 'index'])->name('home');
 Route::get('/admin', [AdminLinksController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/dashboard', [AdminLinksController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/dishes', [DishController::class, 'index'])->name('admin.dishes');
+Route::post('/admin/dishes/store', [DishController::class, 'store'])->name('admin.dishes.store');
 
 

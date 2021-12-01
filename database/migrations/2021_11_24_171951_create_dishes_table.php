@@ -19,6 +19,7 @@ class CreateDishesTable extends Migration
             $table->integer('dish_price');
             $table->integer('status');
             $table->string('dish_description');
+            $table->string('dish_token');
             $table->timestamps();
         });
     }

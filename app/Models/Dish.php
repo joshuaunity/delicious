@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     use HasFactory;
+    protected $fillable = ['dish_name', 'dish_price', 'dish_description', 'status',];
 }
