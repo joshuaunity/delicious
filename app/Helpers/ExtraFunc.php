@@ -15,16 +15,17 @@ namespace App\Helpers;
 
 class ExtraFunc
 {
-    public $permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public static $permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     //tag token generator
-    public static function gentoken($permitted_chars, $strength = 16)
+    public static function gentoken( $strength = 16)
     {
-        $input_length = strlen($permitted_chars);
+        $input = self::$permitted_chars;
+        $input_length = strlen($input);
         $random_string = '';
 
         for ($i = 0; $i < $strength; $i++) {
-            $random_character = $permitted_chars[mt_rand(0, $input_length - 1)];
+            $random_character = $input[mt_rand(0, $input_length - 1)];
             $random_string .= $random_character;
         }
 
