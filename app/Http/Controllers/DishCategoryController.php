@@ -39,6 +39,8 @@ class DishCategoryController extends Controller
      */
     public function update(Request $request, DishCategory $dishcategory)
     {
+        return $dishcategory;
+        
         $data = request()->validate([
             'category_name' => 'required',
         ]);
@@ -94,7 +96,7 @@ class DishCategoryController extends Controller
     public function destroy(Request $request, DishCategory $dishcategory)
     {
         $data = DishCategory::where('cid', $dishcategory);
-        
+
         $dishcategory->update([
             'status' => 0,
         ]);

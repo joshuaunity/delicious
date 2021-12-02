@@ -15,10 +15,11 @@ namespace App\Helpers;
 
 class ExtraFunc
 {
+
     public static $permitted_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     //tag token generator
-    public static function gentoken( $strength = 16)
+    public static function gentoken($strength = 16)
     {
         $input = self::$permitted_chars;
         $input_length = strlen($input);
@@ -30,6 +31,11 @@ class ExtraFunc
         }
 
         return $random_string;
+
+        // $token = openssl_random_pseudo_bytes(20);
+        // $token = bin2hex($token);
+        // return $token;
+
     }
 
 }
