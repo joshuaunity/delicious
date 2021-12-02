@@ -22,7 +22,7 @@
                 <div class="d-flex justify-content-between">
                     <a class="btn site-btn" href="logout"
                         >Log Out
-                        <i class="bx bx-log-out" style="font-size: medium"></i>
+                        <i class="bi bi-box-arrow-left" style="font-size: medium"></i>
                     </a>
                 </div>
             </header>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <a href="logout" class="nav_link">
-                        <i class="bx bx-log-out nav_icon"></i>
+                        <i class="bi bi-box-arrow-left nav_icon"></i>
                         <span class="nav_name">Log Out</span>
                     </a>
                 </nav>

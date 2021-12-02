@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ExtraFunc as ExtraFunc;
 use App\Models\DishCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Helpers\ExtraFunc as ExtraFunc;
 
 class DishCategoryController extends Controller
 {
@@ -14,7 +14,7 @@ class DishCategoryController extends Controller
      *
      * @return void
      */
-public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -27,7 +27,31 @@ public function __construct()
     public function index()
     {
         $categories = DishCategory::all()->where('status', 1)->sortByDesc('created_at');
-        return view('admin.dishcategories' , compact('categories')); 
+        return view('admin.dishcategories', compact('categories'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\DishCategory  $dishCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, DishCategory $dishCategory)
+    {
+        $data = request()->validate([
+            'category_name' => 'required',
+        ]);
+
+        $slug = Str::slug($data['category_name'], '-');
+
+        $category->update([
+            'category_name' => $data['category_name'],
+            'category_slug' => $slug,
+        ]);
+
+        return redirect()->back()->with('editsuccess', 'Category has been created successfully');
+
     }
 
     /**
@@ -45,11 +69,17 @@ public function __construct()
         $token = ExtraFunc::gentoken(20);
         $slug = Str::slug($data['category_name'], '-');
 
-        DishCategory::create([
+        $category = DishCategory::create([
             'category_name' => $data['category_name'],
             'category_slug' => $slug,
             'category_token' => $token,
             'status' => 1,
+        ]);
+
+        // return $category->id;
+
+        $category->update([
+            'cid' => $category->id,
         ]);
 
         return redirect()->back()->with('success', 'Category has been created successfully');

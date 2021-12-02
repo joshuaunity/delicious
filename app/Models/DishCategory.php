@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DishCategory extends Model
 {
     use HasFactory;
+
+    
+    protected $fillable = [
+        'cid', 'category_name', 'category_slug', 'status', 'category_token'
+    ];
 }

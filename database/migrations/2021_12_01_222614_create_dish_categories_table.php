@@ -15,6 +15,7 @@ class CreateDishCategoriesTable extends Migration
     {
         Schema::create('dish_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('cid')->nullable();
             $table->string('category_name');
             $table->string('category_slug');
             $table->integer('status');
