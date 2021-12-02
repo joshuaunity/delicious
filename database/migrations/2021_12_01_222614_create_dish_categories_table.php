@@ -15,6 +15,10 @@ class CreateDishCategoriesTable extends Migration
     {
         Schema::create('dish_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('category_name');
+            $table->string('category_slug');
+            $table->integer('status');
+            $table->longtext('category_token');
             $table->timestamps();
         });
     }

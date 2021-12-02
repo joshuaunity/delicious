@@ -28,12 +28,6 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all()->where('status', 1)->sortByDesc('created_at');
-        // if (count($dishes) > 0) { 
-        //     dd("data found");
-        // } else{
-        //     dd("no data");
-        // }
-
         return view('admin.dishes' , compact('dishes')); 
     }
 

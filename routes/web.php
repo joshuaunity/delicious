@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\AdminLinksController;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\DishCategoryController;
+
 
 
 
@@ -31,5 +33,6 @@ Route::get('/admin/dashboard', [AdminLinksController::class, 'dashboard'])->name
 Route::get('/admin/dishes', [DishController::class, 'index'])->name('admin.dishes');
 Route::post('/admin/dishes/store', [DishController::class, 'store'])->name('admin.dishes.store');
 Route::post('/admin/dishes/destroy/{dish}', [DishController::class, 'destroy'])->name('admin.dishes.destroy');
+Route::get('/admin/categories', [DishCategoryController::class, 'index'])->name('admin.categories');
 
 

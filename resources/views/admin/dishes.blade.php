@@ -3,8 +3,7 @@
 
     <div class="col-md-12">
 
-        <h1>Create dishes <a href="#" data-bs-toggle="modal" data-bs-target="#createDish"> <i class="bi bi-plus-lg"></i>
-            </a> </h1>
+        <h1>Create dishes <a href="#" data-bs-toggle="modal" data-bs-target="#createDish"> <i class="bi bi-plus-lg"></i> </a> </h1>
         @if (session()->has('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
