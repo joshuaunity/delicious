@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ExtraFunc as ExtraFunc;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Helpers\ExtraFunc as ExtraFunc;
-
 
 class DishController extends Controller
 {
@@ -28,13 +27,7 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all()->where('status', 1)->sortByDesc('created_at');
-        // if (count($dishes) > 0) { 
-        //     dd("data found");
-        // } else{
-        //     dd("no data");
-        // }
-
-        return view('admin.dishes' , compact('dishes')); 
+        return view('admin.dishes', compact('dishes'));
     }
 
     /**
@@ -44,7 +37,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -65,7 +58,7 @@ class DishController extends Controller
         $token = ExtraFunc::gentoken(20);
         $slug = Str::slug($data['dish_name'], '-');
 
-        Dish::create([
+        $dish = Dish::create([
             'dish_name' => $data['dish_name'],
             'dish_price' => $data['dish_price'],
             'dish_category' => $data['dish_category'],
@@ -75,7 +68,11 @@ class DishController extends Controller
             'status' => 1,
         ]);
 
-        return redirect()->back()->with('success', 'Dish has been created successfully'); 
+        $dish->update([
+            'did' => $dish->id,
+        ]);
+
+        return redirect()->back()->with('success', 'Dish has been created successfully');
     }
 
     /**
@@ -124,7 +121,7 @@ class DishController extends Controller
             'status' => 0,
         ]);
 
-        return redirect()->back()->with('delete', 'Dish has been deleted'); 
+        return redirect()->back()->with('delete', 'Dish has been deleted');
 
     }
 }
