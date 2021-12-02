@@ -37,7 +37,7 @@ class DishCategoryController extends Controller
      * @param  \App\Models\DishCategory  $dishCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DishCategory $dishCategory)
+    public function update(Request $request, DishCategory $dishcategory)
     {
         $data = request()->validate([
             'category_name' => 'required',
@@ -45,7 +45,7 @@ class DishCategoryController extends Controller
 
         $slug = Str::slug($data['category_name'], '-');
 
-        $category->update([
+        $dishcategory->update([
             'category_name' => $data['category_name'],
             'category_slug' => $slug,
         ]);
@@ -83,5 +83,23 @@ class DishCategoryController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Category has been created successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\DishCategory  $dishCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, DishCategory $dishcategory)
+    {
+        $data = DishCategory::where('cid', $dishcategory);
+        
+        $dishcategory->update([
+            'status' => 0,
+        ]);
+
+        return redirect()->back()->with('delete', 'Dish category has been deleted');
+
     }
 }
