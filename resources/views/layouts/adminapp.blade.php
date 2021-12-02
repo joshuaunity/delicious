@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a class="btn site-btn" href="logout"
+                    <a class="btn site-btn site-border" href="logout"
                         >Log Out
                         <i class="bi bi-box-arrow-left" style="font-size: medium"></i>
                     </a>

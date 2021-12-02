@@ -36,6 +36,7 @@ Route::post('/admin/dishes/destroy/{dish}', [DishController::class, 'destroy'])-
 Route::get('/admin/categories', [DishCategoryController::class, 'index'])->name('admin.categories');
 Route::post('/admin/categories/store', [DishCategoryController::class, 'store'])->name('admin.categories.store');
 Route::put('/admin/categories/{category}/update', [DishCategoryController::class, 'update'])->name('admin.categories.update');
+Route::post('/admin/categories/{category}/destroy', [DishCategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
 
 
