@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ExtraFunc as ExtraFunc;
 use App\Models\Dish;
+use App\Models\DishCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,7 +28,9 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all()->where('status', 1)->sortByDesc('created_at');
-        return view('admin.dishes', compact('dishes'));
+        $dishcategories = DishCategory::all()->where('status', 1)->sortByDesc('created_at');
+
+        return view('admin.dishes', compact('dishes', 'dishcategories'));
     }
 
     /**
@@ -67,6 +70,8 @@ class DishController extends Controller
             'dish_token' => $token,
             'status' => 1,
         ]);
+
+        // return $dish->id;
 
         $dish->update([
             'did' => $dish->id,

@@ -37,17 +37,15 @@ class DishCategoryController extends Controller
      * @param  \App\Models\DishCategory  $dishCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DishCategory $dishcategory)
+    public function update(Request $request, DishCategory $category)
     {
-        return $dishcategory;
-        
         $data = request()->validate([
             'category_name' => 'required',
         ]);
 
         $slug = Str::slug($data['category_name'], '-');
 
-        $dishcategory->update([
+        $category->update([
             'category_name' => $data['category_name'],
             'category_slug' => $slug,
         ]);
@@ -93,11 +91,10 @@ class DishCategoryController extends Controller
      * @param  \App\Models\DishCategory  $dishCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, DishCategory $dishcategory)
+    public function destroy(Request $request, DishCategory $category)
     {
-        $data = DishCategory::where('cid', $dishcategory);
 
-        $dishcategory->update([
+        $category->update([
             'status' => 0,
         ]);
 

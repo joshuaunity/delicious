@@ -44,7 +44,9 @@
                             <div class="mb-3">
                                 <label for="disabledSelect" class="form-label">Dish category</label>
                                 <select name="dish_category" class="form-select @error('dish_category') is-invalid @enderror">
-                                    <option>Disabled select</option>
+                                    @foreach ($dishcategories as $category)
+                                        <option> {{ $category->category_name }} </option>
+                                    @endforeach
                                 </select>
                             </div>
 
