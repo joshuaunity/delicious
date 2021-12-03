@@ -50,7 +50,7 @@ class DishCategoryController extends Controller
             'category_slug' => $slug,
         ]);
 
-        return redirect()->back()->with('editsuccess', 'Category has been created successfully');
+        return redirect()->back()->with('editsuccess', 'Category has been edited successfully');
 
     }
 

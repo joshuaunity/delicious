@@ -41,7 +41,6 @@
                                         data-bs-target="#Modal{{ $category->category_token }}">
                                         <span class="badge bg-success">Edit</span>
                                 </a>
-                                <!-- <a href="{{ route('admin.categories.destroy', $category->cid) }}">  -->
                                 <a href="#" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal{{ $category->category_token }}"> 
                                         <span class="badge bg-danger">Delete</span>
@@ -85,7 +84,7 @@
                 </div>
 
 
-                <!-- Edit Modal -->
+                <!-- Delete Modal -->
                 <div class="modal fade" id="DeleteModal{{ $category->category_token }}" tabindex="-1"
                         aria-labelledby="DeleteModal{{ $category->category_token }}Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-sm">

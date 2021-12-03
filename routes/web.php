@@ -33,6 +33,8 @@ Route::get('/admin/dashboard', [AdminLinksController::class, 'dashboard'])->name
 Route::get('/admin/dishes', [DishController::class, 'index'])->name('admin.dishes');
 Route::post('/admin/dishes/store', [DishController::class, 'store'])->name('admin.dishes.store');
 Route::post('/admin/dishes/destroy/{dish}', [DishController::class, 'destroy'])->name('admin.dishes.destroy');
+Route::put('/admin/dishes/{dish}/update', [DishController::class, 'update'])->name('admin.dishes.update');
+Route::put('/admin/dishes/{dish}/destroy', [DishController::class, 'destroy'])->name('admin.dishes.destroy');
 Route::get('/admin/categories', [DishCategoryController::class, 'index'])->name('admin.categories');
 Route::post('/admin/categories/store', [DishCategoryController::class, 'store'])->name('admin.categories.store');
 Route::put('/admin/categories/{category}/update', [DishCategoryController::class, 'update'])->name('admin.categories.update');

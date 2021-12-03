@@ -111,7 +111,24 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        //
+        $data = request()->validate([
+            'dish_name' => 'required',
+            'dish_price' => 'required|numeric|min:2|max:200',
+            'dish_category' => 'required',
+            'dish_description' => 'required',
+        ]);
+
+        $slug = Str::slug($data['dish_name'], '-');
+
+        $dish->update([
+            'dish_name' => $data['dish_name'],
+            'dish_price' => $data['dish_price'],
+            'dish_category' => $data['dish_category'],
+            'dish_description' => $data['dish_description'],
+            'dish_slug' => $slug,
+        ]);
+
+        return redirect()->back()->with('editsuccess', 'Dish has been edited successfully');
     }
 
     /**

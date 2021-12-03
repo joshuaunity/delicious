@@ -17,7 +17,7 @@ class CreateDishesTable extends Migration
             $table->id();
             $table->integer('did')->nullable();
             $table->string('dish_name');
-            $table->integer('dish_price');
+            $table->float('dish_price');
             $table->string('dish_description');
             $table->string('dish_category');
             $table->string('dish_slug');
