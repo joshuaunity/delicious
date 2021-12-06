@@ -27,6 +27,23 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Satisfy", sans-serif;
 }
 
+.site-btn {
+    background-color: #ffb03b;
+    border-color: #fff !important;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.site-btn:hover {
+    background-color: #fff;
+    border-color: #ffb03b;
+    color: #ffb03b;
+}
+
+.site-border {
+    border-color: #ffb03b !important;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/

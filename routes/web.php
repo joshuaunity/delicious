@@ -6,6 +6,7 @@ use App\Http\Controllers\LinksController;
 use App\Http\Controllers\AdminLinksController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\DishCategoryController;
+use App\Http\Controllers\BookingController;
 
 
 
@@ -26,6 +27,7 @@ Auth::routes();
 
 Route::get('/', [LinksController::class, 'index']);
 Route::get('/home', [LinksController::class, 'index'])->name('home');
+Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
 
 // admin routes ***********
 Route::get('/admin', [AdminLinksController::class, 'dashboard'])->name('admin.dashboard');

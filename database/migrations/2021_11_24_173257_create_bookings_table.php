@@ -17,6 +17,15 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->integer('bid')->nullable();
             $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->integer('people_num');
+            $table->longText('message')->nullable()->default('I will like to make a resaervation');
+            $table->integer('status');
+            $table->string('booking_token');
+            $table->date('booking_date');
+            $table->time('booking_time', $precision = 0);
+            // $table->time('sunrise')->nullable()->default(new DateTime());
             $table->timestamps();
         });
     }
