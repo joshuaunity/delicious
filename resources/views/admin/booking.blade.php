@@ -5,7 +5,7 @@
 <h1>Booking</h1>
 
 @if (session()->has('delete'))
-<div class="alert alert-warning">
+<div class="alert alert-danger">
     {{ session()->get('delete') }}
 </div>
 @endif
@@ -40,6 +40,23 @@
                 </a>
             </td>
         </tr>
+
+        <!-- More Modal -->
+        <div class="modal fade" id="Modal{{ $booking->booking_token }}" tabindex="-1"
+            aria-labelledby="Modal{{ $booking->booking_token }}Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Modal{{ $booking->booking_token }}Label">
+                            More on <i> <b>{{ $booking->name }}'s</b> </i> booking</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Delete Modal -->
         <div class="modal fade" id="DeleteModal{{ $booking->booking_token }}" tabindex="-1"
