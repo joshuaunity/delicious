@@ -177,24 +177,30 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="menu-flters">
               <li data-filter="*" class="filter-active">Show All</li>
-              <li data-filter=".filter-starters">Starters</li>
+              @foreach ($dishcategories as $category)
+                <li data-filter=".filter-{{ $category->category_name }}">{{ $category->category_name }}</li>
+              @endforeach
+              {{-- <li data-filter=".filter-starters">Starters</li>
               <li data-filter=".filter-salads">Salads</li>
-              <li data-filter=".filter-specialty">Specialty</li>
+              <li data-filter=".filter-specialty">Specialty</li> --}}
             </ul>
           </div>
         </div>
 
         <div class="row menu-container">
 
-          <div class="col-lg-6 menu-item filter-starters">
-            <div class="menu-content">
-              <a href="#">Lobster Bisque</a><span>$5.95</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-          </div>
+          @foreach ($dishes as $dish)
+              <div class="col-lg-6 menu-item filter-{{ $dish->dish_category }}">
+                <div class="menu-content">
+                  <a href="#">{{ $dish->dish_name }}</a><span>${{ $dish->dish_price }}</span>
+                </div>
+                <div class="menu-ingredients">
+                  {{ $dish->dish_description }}
+                </div>
+              </div>
+          @endforeach
 
+{{-- 
           <div class="col-lg-6 menu-item filter-specialty">
             <div class="menu-content">
               <a href="#">Bread barrel</a><span>$6.95</span>
@@ -265,7 +271,7 @@
             <div class="menu-ingredients">
               Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
             </div>
-          </div>
+          </div> --}}
 
         </div>
 
