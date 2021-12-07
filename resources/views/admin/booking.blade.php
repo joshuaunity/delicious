@@ -2,25 +2,29 @@
 <title>Bookings - Delicious</title>
 
 @section('contentadmin')
-<h1>Booking</h1>
 
+<h1>Bookings</h1>
+{{-- delete message --}}
 @if (session()->has('delete'))
 <div class="alert alert-danger">
     {{ session()->get('delete') }}
 </div>
 @endif
 
+{{-- satisfied message --}}
 @if (session()->has('satisfied'))
 <div class="alert alert-success">
     {{ session()->get('satisfied') }}
 </div>
 @endif
 
+{{-- unsatisfied message --}}
 @if (session()->has('unsatisfied'))
 <div class="alert alert-warning">
     {{ session()->get('unsatisfied') }}
 </div>
 @endif
+
 <table class="table table-hover mt-5 text-center">
     <thead>
         <tr>
