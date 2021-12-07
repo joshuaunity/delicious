@@ -43,5 +43,6 @@ Route::put('/admin/categories/{category}/update', [DishCategoryController::class
 Route::put('/admin/categories/{category}/destroy', [DishCategoryController::class, 'destroy'])->name('admin.categories.destroy');
 Route::get('/admin/booking', [BookingController::class, 'index'])->name('admin.booking');
 Route::put('/admin/booking/{booking}/destroy', [BookingController::class, 'destroy'])->name('admin.booking.destroy');
+Route::get('/admin/booking/{booking}/attend', [BookingController::class, 'attend'])->name('admin.booking.attend');
 
 

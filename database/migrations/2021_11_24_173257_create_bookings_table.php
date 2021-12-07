@@ -22,6 +22,7 @@ class CreateBookingsTable extends Migration
             $table->integer('people_num');
             $table->longText('message')->nullable()->default('I will like to make a resaervation');
             $table->integer('status');
+            $table->integer('satisfied');
             $table->string('booking_token');
             $table->date('booking_date');
             $table->time('booking_time', $precision = 0);

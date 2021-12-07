@@ -87,4 +87,27 @@ class BookingController extends Controller
 
         return redirect()->back()->with('delete', 'Booking has been deleted');
     }
+
+    public function attend(Booking $booking)
+    {
+        // check if this booking has been satisfied to know if to  
+        // mark it as satisfied or unsatisfied
+        if ($booking->satisfied == 1) {
+            $booking->update([
+                'satisfied' => 0,
+            ]);
+
+        return redirect()->back()->with('satisfied', 'Booking has been satisfied.');
+
+
+        } else {
+            $booking->update([
+                'satisfied' => 1,
+            ]);
+
+        return redirect()->back()->with('unsatisfied', 'Booking has been unsatisfied.');
+
+        }
+
+    }
 }

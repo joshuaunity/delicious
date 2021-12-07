@@ -10,6 +10,17 @@
 </div>
 @endif
 
+@if (session()->has('satisfied'))
+<div class="alert alert-success">
+    {{ session()->get('satisfied') }}
+</div>
+@endif
+
+@if (session()->has('unsatisfied'))
+<div class="alert alert-warning">
+    {{ session()->get('unsatisfied') }}
+</div>
+@endif
 <table class="table table-hover mt-5 text-center">
     <thead>
         <tr>
@@ -21,6 +32,31 @@
 
     <tbody>
         @foreach ($bookings as $booking)
+
+        @if ($booking->satisfied == 0)
+        <tr class="table-secondary" style="opacity: 0.4;">
+            <td> {{ $booking->name }} </td>
+
+            <td>
+                <span class="badge bg-secondary"> {{ $booking->people_num }} people </span>
+                <span class="badge bg-secondary"> {{ date('F d, Y', strtotime($booking->booking_date)) }}
+                </span>
+                <span class="badge bg-secondary"> {{ date('g:ia', strtotime($booking->booking_time)) }} </span>
+            </td>
+
+            <td>
+                <a href="" data-bs-toggle="modal" data-bs-target="#Modal{{ $booking->booking_token }}">
+                    <span class="badge bg-secondary">More...</span>
+                </a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal{{ $booking->booking_token }}">
+                    <span class="badge bg-danger">Delete</span>
+                </a>
+                <a href="{{ route('admin.booking.attend', $booking->bid) }}">
+                    <span class="badge bg-primary">Unsatisfy</span>
+                </a>
+            </td>
+        </tr>
+        @else
         <tr>
             <td> {{ $booking->name }} </td>
 
@@ -38,8 +74,13 @@
                 <a href="#" data-bs-toggle="modal" data-bs-target="#DeleteModal{{ $booking->booking_token }}">
                     <span class="badge bg-danger">Delete</span>
                 </a>
+                <a href="{{ route('admin.booking.attend', $booking->bid) }}">
+                    <span class="badge bg-primary">Satisfy</span>
+                </a>
             </td>
         </tr>
+        @endif
+
 
         <!-- More Modal -->
         <div class="modal fade" id="Modal{{ $booking->booking_token }}" tabindex="-1"
@@ -52,7 +93,20 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
+                        <div>
+                            <span class="badge bg-primary"> {{ $booking->people_num }} people </span>
+                            <span class="badge bg-warning text-dark"> {{ date('F d, Y',
+                                strtotime($booking->booking_date)) }}
+                            </span>
+                            <span class="badge bg-info"> {{ date('g:ia', strtotime($booking->booking_time)) }} </span>
+                        </div>
+                        <br>
+                        <span class="pt-1"> <b>Bookers message:</b>
+                            {{ $booking->message }}
+                        </span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
