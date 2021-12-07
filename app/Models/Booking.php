@@ -12,6 +12,6 @@ class Booking extends Model
     protected $fillable = [
         'bid', 'name', 'email', 'phone', 'people_num', 
         'message', 'booking_date', 'booking_time', 
-        'status', 'booking_token',
+        'satisfied', 'status', 'booking_token',
     ];
 }

@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/', [LinksController::class, 'index']);
 Route::get('/home', [LinksController::class, 'index'])->name('home');
-Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+Route::post('/booking/store', [LinksController::class, 'store'])->name('booking.store');
 
 // admin routes ***********
 Route::get('/admin', [AdminLinksController::class, 'dashboard'])->name('admin.dashboard');
@@ -41,6 +41,8 @@ Route::get('/admin/categories', [DishCategoryController::class, 'index'])->name(
 Route::post('/admin/categories/store', [DishCategoryController::class, 'store'])->name('admin.categories.store');
 Route::put('/admin/categories/{category}/update', [DishCategoryController::class, 'update'])->name('admin.categories.update');
 Route::put('/admin/categories/{category}/destroy', [DishCategoryController::class, 'destroy'])->name('admin.categories.destroy');
-
+Route::get('/admin/booking', [BookingController::class, 'index'])->name('admin.booking');
+Route::put('/admin/booking/{booking}/destroy', [BookingController::class, 'destroy'])->name('admin.booking.destroy');
+Route::get('/admin/booking/{booking}/attend', [BookingController::class, 'attend'])->name('admin.booking.attend');
 
 
