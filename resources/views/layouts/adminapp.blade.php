@@ -54,7 +54,7 @@
                                 <span class="nav_name">Dishes</span>
                             </a>
 
-                            <a href="#" class="nav_link">
+                            <a href="{{ route('admin.booking') }}" class="nav_link">
                                 <i class="bx bx-book-bookmark nav_icon"></i>
                                 <span class="nav_name">Bookings</span>
                             </a>
