@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\DishApiController;
+use App\Http\Controllers\Api\DishCategoryApiController;
+use App\Http\Controllers\Api\BookingApiController;
+
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +21,40 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+
+});
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth',
+
+], function ($router) {
+
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::post('/me', [AuthController::class, 'me']);
+
 });
 
 Route::group([
     'middleware' => 'api',
-    'namespace' => 'App\Http\Controllers',
+    'namespace' => 'App\Http\Controllers\Api',
     'prefix' => 'dishes',
 ], function ($router) {
+    Route::get('/dishes', [DishApiController::class, 'index']);
+    Route::get('/dish-categories', [DishCategoryApiController::class, 'index']);
 
 });
+
+Route::group([
+    'middleware' => 'api',
+    'namespace' => 'App\Http\Controllers\Api',
+    'prefix' => 'booking',
+], function ($router) {
+    Route::post('/book-a-table', [BookingApiController::class, 'store']);
+
+});
+
