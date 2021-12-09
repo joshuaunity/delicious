@@ -10,6 +10,16 @@ use Illuminate\Http\Request;
 class BookingApiController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -37,7 +47,7 @@ class BookingApiController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->isMethod('get')) {
+        if ($request->isMethod('post')) {
 
             $data = request()->validate([
                 'name' => 'required',
@@ -46,7 +56,7 @@ class BookingApiController extends Controller
                 'people_num' => 'required',
                 'message' => 'required',
                 'booking_date' => 'required|date',
-                'booking_time' => 'required|date_format:H:i',
+                'booking_time' => 'required',
             ]);
 
             $token = ExtraFunc::gentoken(20);
@@ -61,7 +71,7 @@ class BookingApiController extends Controller
                 'booking_time' => $data['booking_time'],
                 'booking_token' => $token,
                 'status' => 1,
-                'satisfied' => 1,
+                'satisfied' => 0,
             ]);
 
             $booking->update([

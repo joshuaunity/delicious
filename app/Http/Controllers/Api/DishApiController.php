@@ -29,6 +29,7 @@ class DishApiController extends Controller
     {
 
         if ($request->isMethod('get')) {
+
             $dishes = Dish::where('status', 1)->get([
                 'dish_name', 'dish_slug', 'dish_category', 'dish_price', 'dish_description', 
             ]);
@@ -43,14 +44,9 @@ class DishApiController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store_sale()
     {
-
+        // gendidder, dish_cat, dish, date&time, did, cid, sid, status
     }
 
     /**
