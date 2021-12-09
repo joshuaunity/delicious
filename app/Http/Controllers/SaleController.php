@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
+use App\Models\DishCategory;
 use App\Models\Sale;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,14 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $dishes = Dish::all();
+        
+        $dish_categories = DishCategory::all();
+
+        $sales = Sale::all()->where('status', 1)->sortByDesc('created_at');
+
+        return view('admin.sales', compact('sales', 'dishes', 'dish_categories'));
+
     }
 
     /**
@@ -80,6 +89,11 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
-        //
+        $sale->update([
+            'status' => 0,
+        ]);
+
+        return redirect()->back()->with('delete', 'Sale has been revoked');
+
     }
 }

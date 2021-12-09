@@ -59,7 +59,7 @@
                                 <span class="nav_name">Bookings</span>
                             </a>
 
-                            <a href="#" class="nav_link">
+                            <a href="{{ route('admin.sales') }}" class="nav_link">
                                 <i class="bi bi-cash-coin nav_icon"></i>
                                 <span class="nav_name">Sales</span>
                             </a>

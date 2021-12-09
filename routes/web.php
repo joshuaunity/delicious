@@ -7,6 +7,8 @@ use App\Http\Controllers\AdminLinksController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\DishCategoryController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\SaleController;
+
 
 
 
@@ -45,4 +47,5 @@ Route::get('/admin/booking', [BookingController::class, 'index'])->name('admin.b
 Route::put('/admin/booking/{booking}/destroy', [BookingController::class, 'destroy'])->name('admin.booking.destroy');
 Route::get('/admin/booking/{booking}/attend', [BookingController::class, 'attend'])->name('admin.booking.attend');
 
-
+Route::get('/admin/sales', [SaleController::class, 'index'])->name('admin.sales');
+Route::put('/admin/sales/{sale}/destroy', [SaleController::class, 'destroy'])->name('admin.sales.destroy');
