@@ -60,8 +60,8 @@
                             </a>
 
                             <a href="#" class="nav_link">
-                                <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
-                                <span class="nav_name">Stats</span>
+                                <i class="bi bi-cash-coin nav_icon"></i>
+                                <span class="nav_name">Sales</span>
                             </a>
                         </div>
                     </div>

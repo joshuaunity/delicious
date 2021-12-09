@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\DishApiController;
 use App\Http\Controllers\Api\DishCategoryApiController;
 use App\Http\Controllers\Api\BookingApiController;
+use App\Http\Controllers\Api\SaleApiController;
+
 
 
 
@@ -55,6 +57,16 @@ Route::group([
     'prefix' => 'booking',
 ], function ($router) {
     Route::post('/book-a-table', [BookingApiController::class, 'store']);
+
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'namespace' => 'App\Http\Controllers\Api',
+    'prefix' => 'sale',
+], function ($router) {
+    Route::post('/make-sale', [SaleApiController::class, 'store']);
 
 });
 

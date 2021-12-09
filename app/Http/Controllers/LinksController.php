@@ -39,7 +39,7 @@ class LinksController extends Controller
             'booking_time' => $data['booking_time'],
             'booking_token' => $token,
             'status' => 1,
-            'satisfied' => 1,
+            'satisfied' => 0,
         ]);
 
         // return $booking->id;
