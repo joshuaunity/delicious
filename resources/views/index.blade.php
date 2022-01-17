@@ -551,7 +551,7 @@
           </div>
 
           <div class="text-center">
-            <button type="submit" class="btn site-border site-btn rounded-pill mt-3">Send Message</button>
+            <button type="submit" class="btn site-border site-btn rounded-pill mt-3">Send Booking</button>
           </div>
         </form>
 
@@ -840,27 +840,58 @@
           </div>
         </div>
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form action="{{ route('message.store') }}" method="post" class="">
+
+          @if (session()->has('message_success'))
+          <div class="alert alert-success">
+            {{ session()->get('message_success') }}
+          </div>
+          @endif
+          
+          @csrf
+
           <div class="row">
+
             <div class="col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+              <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
+                placeholder="Your Name">
+            
+              @error('name')
+              <div class="alert alert-danger mt-2">{{ $message }}</div>
+              @enderror
             </div>
-            <div class="col-md-6 form-group mt-3 mt-md-0">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+
+            <div class="col-md-6 form-group">
+              <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                placeholder="Your Email">
+            
+              @error('email')
+              <div class="alert alert-danger mt-2">{{ $message }}</div>
+              @enderror
             </div>
+
           </div>
+
+
           <div class="form-group mt-3">
-            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+            <input type="text" name="subject" class="form-control @error('subject') is-invalid @enderror" id="subject"
+              placeholder="Your Subject">
+          
+            @error('subject')
+            <div class="alert alert-danger mt-2">{{ $message }}</div>
+            @enderror
           </div>
+
           <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+            <textarea class="form-control @error('message') is-invalid @enderror" name="message" rows="5" placeholder="Message"></textarea>
+
+            @error('message')
+            <div class="alert alert-danger mt-2">{{ $message }}</div>
+            @enderror
           </div>
-          <div class="my-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your message has been sent. Thank you!</div>
-          </div>
-          <div class="text-center"><button type="submit">Send Message</button></div>
+
+
+          <div class="text-center"><button type="submit" class="btn site-border site-btn rounded-pill mt-3">Send Message</button></div>
         </form>
 
       </div>

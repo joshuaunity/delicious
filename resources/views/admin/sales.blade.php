@@ -4,12 +4,13 @@
 @section('contentadmin')
 <h1> Sales </h1>
 
-<table class="table table-hover mt-5">
+<table class="table table-hover mt-5 text-center    ">
         <thead>
                 <tr>
                         <th scope="col">#</th>
                         <th scope="col">Dish name</th>
                         <th scope="col">Dish category</th>
+                        <th scope="col">Dish price</th>
                         <th scope="col">Gender</th>
                         <th scope="col">Date&Time</th>
                         <th scope="col">Actions</th>
@@ -27,12 +28,13 @@
 
                         <td>{{ $dishes->where('did', $sale->did)->pluck('dish_name')[0];      }}</td>
                         <td>{{ $dish_categories->where('cid', $sale->cid)->pluck('category_name')[0]; }}</td>
+                        <td>${{ $dishes->where('did', $sale->did)->pluck('dish_price')[0]; }}</td>
                         <td>{{ $sale->gender }}</td>
                         <td>{{ date('F d, Y', strtotime($sale->created_at)) }} {{ date('g:ia', strtotime($sale->created_at)) }}</td>
                         <td>
                                 <a href="#" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal{{ $sale->sale_token }}"> 
-                                        <span class="badge bg-danger">Delete</span>
+                                        <span class="badge bg-danger">Revoke</span>
                                 </a>
                         </td>
                 </tr>

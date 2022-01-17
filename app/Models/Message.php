@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sale extends Model
+class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'sid', 'did', 'cid', 'gender', 'age',  'location', 'status', 'sale_token',
+        protected $fillable = [
+        'mid', 'name', 'email', 'subject', 'message', 'is_read', 'status', 'message_token'
     ];
 }

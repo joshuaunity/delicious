@@ -19,6 +19,8 @@ class CreateSalesTable extends Migration
             $table->integer('did');
             $table->integer('cid');
             $table->string('gender');
+            $table->integer('age');
+            $table->string('location')->nullable();
             $table->integer('status');
             $table->string('sale_token');
             $table->timestamps();

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ExtraFunc as ExtraFunc;
 use App\Models\Dish;
 use App\Models\DishCategory;
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Response;
 
 class SaleController extends Controller
 {
@@ -17,7 +19,7 @@ class SaleController extends Controller
     public function index()
     {
         $dishes = Dish::all();
-        
+
         $dish_categories = DishCategory::all();
 
         $sales = Sale::all()->where('status', 1)->sortByDesc('created_at');
@@ -33,7 +35,33 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $dishes = Dish::inRandomOrder()->first();
+        $cid = DishCategory::where('category_name', $dishes->dish_category)
+            ->pluck('cid')[0];
+        $genders = array('male', 'female');
+        $gender_key = array_rand($genders);
+        $ages = array(16, 17, 18, 19, 20, 21);
+        $gender_key = array_rand($genders);
+
+        $token = ExtraFunc::gentoken(20);
+
+        $sale = Sale::create([
+            'did' => $dishes->did,
+            'cid' => $cid,
+            'gender' => $genders[$gender_key],
+            'age' => rand(15, 90),
+            'location' => null,
+            'sale_token' => $token,
+            'status' => 1,
+        ]);
+
+        $sale->update([
+            'sid' => $sale->id,
+        ]);
+
+        // return Response::json($sale);
+
+        return response()->json($sale);
     }
 
     /**

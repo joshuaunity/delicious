@@ -30,6 +30,8 @@ Auth::routes();
 Route::get('/', [LinksController::class, 'index']);
 Route::get('/home', [LinksController::class, 'index'])->name('home');
 Route::post('/booking/store', [LinksController::class, 'store'])->name('booking.store');
+Route::post('/message/store', [LinksController::class, 'store_message'])->name('message.store');
+
 
 // admin routes ***********
 Route::get('/admin', [AdminLinksController::class, 'dashboard'])->name('admin.dashboard');
@@ -49,3 +51,5 @@ Route::get('/admin/booking/{booking}/attend', [BookingController::class, 'attend
 
 Route::get('/admin/sales', [SaleController::class, 'index'])->name('admin.sales');
 Route::put('/admin/sales/{sale}/destroy', [SaleController::class, 'destroy'])->name('admin.sales.destroy');
+
+Route::get('/admin/sales/create', [SaleController::class, 'create'])->name('admin.sales.create');

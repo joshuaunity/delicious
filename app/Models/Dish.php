@@ -10,8 +10,8 @@ class Dish extends Model
     use HasFactory;
 
     protected $fillable = [
-        'did', 'dish_name', 'dish_slug', 'dish_price', 
-        'dish_description', 'dish_category', 'status', 
+        'did', 'cid', 'dish_name', 'dish_slug', 'dish_price', 
+        'dish_description', 'status', 
         'dish_token'
     ];
 }

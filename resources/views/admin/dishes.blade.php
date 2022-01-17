@@ -44,10 +44,10 @@
 
                         <div class="mb-3">
                             <label for="disabledSelect" class="form-label">Dish category</label>
-                            <select name="dish_category"
+                            <select name="cid"
                                 class="form-select @error('dish_category') is-invalid @enderror">
                                 @foreach ($dishcategories as $category)
-                                <option> {{ $category->category_name }} </option>
+                                <option value="{{ $category->cid }}"> {{ $category->category_name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -171,7 +171,7 @@
                                         <label for="disabledSelect" class="form-label">Dish category</label>
                                         <select name="dish_category"
                                             class="form-select @error('dish_category') is-invalid @enderror">
-                                            <option> {{ $dish->dish_category }} </option>
+                                            <option> {{ $dishcategories->where('cid', $dish->cid)->pluck('category_name')[0]; }} </option>
                                             @foreach ($dishcategories as $category)
                                             <option> {{ $category->category_name }} </option>
                                             @endforeach
