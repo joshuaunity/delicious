@@ -33,6 +33,8 @@ class SaleApiController extends Controller
                 'did' => 'required',
                 'cid' => 'required',
                 'gender' => 'required',
+                'age' => 'required',
+                'location' => 'required',
             ]);
 
             $token = ExtraFunc::gentoken(20);
@@ -41,6 +43,8 @@ class SaleApiController extends Controller
                 'did' => $data['did'],
                 'cid' => $data['cid'],
                 'gender' => $data['gender'],
+                'age' => $data['age'],
+                'location' => $data['location'],
                 'sale_token' => $token,
                 'status' => 1,
             ]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\ExtraFunc as ExtraFunc;
 use App\Models\Dish;
 use App\Models\DishCategory;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,8 +28,24 @@ class DishController extends Controller
      */
     public function index()
     {
+        // all category seprate
+        // all dish seperate
+        // 
+        // ->where('cid', $sale->cid)->pluck('category_name')[0]
+        
         $dishes = Dish::all()->where('status', 1)->sortByDesc('created_at');
-        $dishcategories = DishCategory::all()->where('status', 1)->sortByDesc('created_at');
+
+
+
+        
+        $dishcategories = DishCategory::all()->where('status', 1);
+
+        $sales = Sale::all()->where('status', 1)->sortByDesc('created_at');
+
+        // $cat_salad = Sale::all()->where('status', 1)->where('dish_category', 'salads')->sum('salads');
+        $cat_salad = Sale::all()->where('status', 1);
+
+        // return $cat_salad;
 
         return view('admin.dishes', compact('dishes', 'dishcategories'));
     }
@@ -52,9 +69,9 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
+            'cid' => 'required',
             'dish_name' => 'required',
             'dish_price' => 'required|numeric|min:2|max:200',
-            'dish_category' => 'required',
             'dish_description' => 'required',
         ]);
 
@@ -62,9 +79,9 @@ class DishController extends Controller
         $slug = Str::slug($data['dish_name'], '-');
 
         $dish = Dish::create([
+            'cid' => $data['cid'],
             'dish_name' => $data['dish_name'],
             'dish_price' => $data['dish_price'],
-            'dish_category' => $data['dish_category'],
             'dish_description' => $data['dish_description'],
             'dish_slug' => $slug,
             'dish_token' => $token,

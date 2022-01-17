@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Dish;
+
 use App\Models\DishCategory;
 use Illuminate\Http\Request;
+use App\Helpers\ExtraFunc as ExtraFunc;
 
 class LinksController extends Controller
 {
@@ -49,5 +52,35 @@ class LinksController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Your booking was successfully');
+    }
+
+    public function store_message(Request $request)
+    {
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        $token = ExtraFunc::gentoken(20);
+
+        $message = Message::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'subject' => $data['subject'],
+            'message' => $data['message'],
+            'message_token' => $token,
+            'is_read' => 0,
+            'status' => 1,
+        ]);
+
+        // return $message->id;
+
+        $message->update([
+            'mid' => $message->id,
+        ]);
+
+        return redirect()->back()->with('message_success', 'Message has been sent successfully');
     }
 }
